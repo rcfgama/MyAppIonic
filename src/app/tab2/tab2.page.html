@@ -1,17 +1,33 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide>
+      <div>
+        <img id="imgsli" src="../../assets/images/slitest1.png">
+        <h1>Sinistro</h1>
+        <p>Esse app foi feito por um cara Sinistro!</p>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div>
+        <img id="imgsli" src="../../assets/images/slitest2.png">
+        <h1>Boladão</h1>
+        <p>Pai de um garoto Boladão!</p>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div>
+        <img id="imgsli" src="../../assets/images/slitest3.png">
+        <h1>Brabo</h1>
+        <p>Esse cara é Brabo demais!</p>
+      </div>  
+    </ion-slide>
+    <ion-slide>
+      <div>
+        <img id="imgsli" src="../../assets/images/slitest4.png">
+        <h1>Ruim de Aturar</h1>
+        <p>Está ruim de aturar esse cara!</p>
+        <a (click)="goToTabsPage()">Continuar</a>
+      </div>
+    </ion-slide>
+  </ion-slides>
 </ion-content>
