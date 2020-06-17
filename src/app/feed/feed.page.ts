@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./feed.page.scss'],
 })
 export class FeedPage implements OnInit {
-  public nome:string = "Ronaldo Gama";
-  monthName = new Array ("jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez")
-  public date = new Date().getDate() +" de "+ this.monthName [new Date().getMonth()] +" de "+ new Date().getFullYear();
-
+  public objeto_feed = {
+    titulo:"Ronaldo Gama",
+    data:"Novembro 15, 1995",
+    descricao:"Eu sou pica das galaxias!!",
+    qntd_likes: 12,
+    qntd_comments: 4,
+    time_comment: "11h ago"
+  }
+  
   constructor() { }
 
   ngOnInit() {    
