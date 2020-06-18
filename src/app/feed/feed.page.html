@@ -5,23 +5,19 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
+
+  <ion-card *ngFor="let filme of lista_filmes">
     <ion-row>
-      <ion-item>
-        <ion-avatar item-start>
-          <img src="../../assets/images/marty-image.jpg">
-        </ion-avatar>
-      </ion-item>
       <div>
-        <h2 class="title">{{ objeto_feed.titulo }}</h2>
-        <p class="text">{{ objeto_feed.data }}</p>
+        <h2 class="title">{{ filme.original_title }}</h2>
+        <p class="text">{{ filme.release_date }}</p>
       </div>
     </ion-row>
     
-    <img id="img" src="../../assets/images/deLorean-tima-machine-image.jpg">
+    <img id="img" [src]="'https://image.tmdb.org/t/p/w300/' + filme.backdrop_path">
 
     <ion-card-content>
-      <p>{{ objeto_feed.descricao }}</p>
+      <p>{{ filme.overview }}</p>
     </ion-card-content>
 
     <ion-row>
@@ -42,4 +38,5 @@
       </ion-col>
     </ion-row>
   </ion-card>
+
 </ion-content>
