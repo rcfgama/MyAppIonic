@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProviderService } from '../provider.service';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-feed',
@@ -10,23 +11,32 @@ import { ProviderService } from '../provider.service';
   ]
 })
 
-export class FeedPage implements OnInit {
+export class FeedPage {
   public objeto_feed = {
-    titulo:"Ronaldo Gama",
-    data:"Novembro 15, 1995",
-    descricao:"Eu sou pica das galaxias!!",
     qntd_likes: 12,
     qntd_comments: 4,
     time_comment: "11h ago"
   }
 
   public lista_filmes = new Array<any>();
+  public loading;
 
   constructor(
-    private provide: ProviderService
+    private provide: ProviderService,
+    public loadCtrl: LoadingController
   ) { }
 
-  ngOnInit() { 
+  async presentLoading() {
+    this.loading = await this.loadCtrl.create({
+      message: 'Carregando...',
+    });
+     await this.loading.present();
+  
+     await this.loading.dismiss();
+  }
+
+  ionViewDidEnter() { 
+    this.presentLoading();
     this.provide.getLatestMovies().subscribe(
       data => {
         const response = (data as any);
