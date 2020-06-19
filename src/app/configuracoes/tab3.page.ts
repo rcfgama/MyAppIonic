@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PerfilPage } from '../perfil/perfil.page';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab3',
@@ -9,6 +10,16 @@ import { PerfilPage } from '../perfil/perfil.page';
 export class Tab3Page {
   rootPage = PerfilPage;
 
-  constructor() {}
+  constructor(
+    public router: Router
+  ) {}
+
+  abrirPerfil() {
+    this.router.navigate(['/tabs/perfil']);
+  }
+
+  abrirSobre() {
+    this.router.navigate(['/tabs/sobre']);
+  }
 
 }
