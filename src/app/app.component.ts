@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { ConfigProvider } from './config';
 import { Tab2Page } from './intro/tab2.page';
 import { TabsPage } from './tabs/tabs.page';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -16,13 +17,13 @@ import { TabsPage } from './tabs/tabs.page';
   ]
 })
 export class AppComponent {
-  rootPage: any;
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private configProvider: ConfigProvider
+    private configProvider: ConfigProvider,
+    public rootPage: Router
   ) {
     this.initializeApp();
   }
@@ -32,10 +33,10 @@ export class AppComponent {
       
       let config = this.configProvider.getConfigData();
       if(config == null) {
-        this.rootPage = Tab2Page;
+        this.rootPage.navigate(['intro']);
         this.configProvider.setConfigData(false);
       } else {
-        this.rootPage = TabsPage;
+        this.rootPage.navigate(['tabs/tab1']);
       }
 
       console.log(config);
@@ -44,4 +45,6 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
+
+
 }
