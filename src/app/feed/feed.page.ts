@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ProviderService } from '../provider.service';
-import { LoadingController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { LoadingController, IonInfiniteScroll } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-feed',
@@ -13,8 +13,10 @@ import { Router } from '@angular/router';
 })
 
 export class FeedPage {
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   
   public lista_filmes = new Array<any>();
+  public page = 1;
   public loading;
   public event;
   public refreshing: boolean = false;
@@ -44,12 +46,25 @@ export class FeedPage {
     this.carregarFilmes();
   }
 
-  carregarFilmes() {
+  loadData(event) {
+    this.page++;
+    this.event = event;
+    this.carregarFilmes(true);
+  }
+
+  carregarFilmes(newpage: boolean = false) {
     this.presentLoading();
-    this.provide.getLatestMovies().subscribe(
+    this.provide.getLatestMovies(this.page).subscribe(
       data => {
         const response = (data as any);
-        this.lista_filmes = response.results;
+        if (newpage) {
+          this.lista_filmes = this.lista_filmes.concat(response.results);
+          console.log(this.page);
+          console.log(this.lista_filmes);
+          this.event.target.complete();
+        } else {
+          this.lista_filmes = response.results;
+        }
         if(this.refreshing) {
           this.event.target.complete();
           this.refreshing = false;

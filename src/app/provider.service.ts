@@ -10,8 +10,8 @@ export class ProviderService {
 
   constructor(public http: HttpClient ) { }
 
-  getLatestMovies() {
-    return this.http.get(this.baseApiPath + "/movie/popular?api_key=bfa7443c142635656f6fe1dfe351ad01&language=en-US&page=1");
+  getLatestMovies(page) {
+    return this.http.get(this.baseApiPath + `/movie/popular?page=${page}&api_key=bfa7443c142635656f6fe1dfe351ad01&language=en-US&page=1`);
   }
 
   getMovieDetails(id) {
