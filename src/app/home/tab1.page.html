@@ -8,4 +8,6 @@
 
 <ion-content [fullscreen]="true">
     <p>Home page</p>
+    <img *ngIf="img" [src]="img">
+    <ion-button color="secondary" expand="block" (click)="tirarFoto()">Tirar Foto</ion-button>
 </ion-content>
