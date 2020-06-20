@@ -28,6 +28,10 @@ const routes: Routes = [
         loadChildren: () => import('../feed/feed.module').then(m => m.FeedPageModule)
       },
       {
+        path: 'detalhes/:id',
+        loadChildren: () => import('../detalhes/detalhes.module').then(m => m.DetalhesPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'

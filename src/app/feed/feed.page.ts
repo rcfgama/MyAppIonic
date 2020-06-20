@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ProviderService } from '../provider.service';
 import { LoadingController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-feed',
@@ -12,12 +13,7 @@ import { LoadingController } from '@ionic/angular';
 })
 
 export class FeedPage {
-  public objeto_feed = {
-    qntd_likes: 12,
-    qntd_comments: 4,
-    time_comment: "11h ago"
-  }
-
+  
   public lista_filmes = new Array<any>();
   public loading;
   public event;
@@ -25,7 +21,7 @@ export class FeedPage {
 
   constructor(
     private provide: ProviderService,
-    public loadCtrl: LoadingController
+    public loadCtrl: LoadingController,
   ) { }
 
   async presentLoading() {
@@ -54,7 +50,6 @@ export class FeedPage {
       data => {
         const response = (data as any);
         this.lista_filmes = response.results;
-        console.log(response);
         if(this.refreshing) {
           this.event.target.complete();
           this.refreshing = false;

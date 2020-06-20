@@ -1,15 +1,11 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Feed</ion-title>
+    <ion-title>detalhes</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-
-  <ion-card *ngFor="let filme of lista_filmes">
+  <ion-card *ngIf="filme">
     <ion-row>
       <div>
         <h2 class="title">{{ filme.original_title }}</h2>
@@ -23,7 +19,5 @@
       <p>{{ filme.overview }}</p>
     </ion-card-content>
 
-    <ion-button color="secondary" expand="block" [routerLink]="['/tabs/detalhes', filme.id]">Detalhes</ion-button>
   </ion-card>
-
 </ion-content>

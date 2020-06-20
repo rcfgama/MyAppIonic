@@ -39,8 +39,6 @@ export class AppComponent {
         this.rootPage.navigate(['tabs/tab1']);
       }
 
-      console.log(config);
-
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
